@@ -1,0 +1,30 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    background-color: $bg-dark;
+    color: $text-light;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: all $transition-speed ease;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary-hover;
+    }
+}

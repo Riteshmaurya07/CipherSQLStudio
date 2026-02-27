@@ -1,0 +1,32 @@
+// SCSS Variables
+
+// Colors
+$bg-dark: #121212;
+$panel-bg: #1e1e1e;
+$primary: #00e5ff;
+$primary-hover: #00b8d4;
+$text-light: #f5f5f5;
+$text-muted: #888888;
+$error: #ff5252;
+$success: #69f0ae;
+
+// Typography
+$font-family: 'Inter', 'Roboto', sans-serif;
+$font-code: 'Fira Code', 'Consolas', monospace;
+
+// Breakpoints
+$bp-mobile: 320px;
+$bp-tablet: 641px;
+$bp-desktop: 1024px;
+$bp-large: 1281px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Other
+$border-radius: 8px;
+$transition-speed: 0.3s;

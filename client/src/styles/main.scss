@@ -1,0 +1,170 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'global' as *;
+
+// Global App Container
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+// BEM for Assignment List
+.assignment-list {
+    padding: $spacing-lg;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+
+    &__header {
+        margin-bottom: $spacing-xl;
+
+        h1 {
+            color: $primary;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-md;
+
+        @include tablet {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include desktop {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__card {
+        @include glass-panel;
+        padding: $spacing-md;
+        cursor: pointer;
+        transition: transform $transition-speed;
+
+        &:hover {
+            transform: translateY(-5px);
+            border-color: $primary;
+        }
+
+        h3 {
+            margin-bottom: $spacing-xs;
+            color: $text-light;
+        }
+
+        p {
+            color: $text-muted;
+            margin-bottom: $spacing-sm;
+        }
+
+        .difficulty {
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+
+            &--easy {
+                color: $success;
+            }
+
+            &--medium {
+                color: #ffd700;
+            }
+
+            &--hard {
+                color: $error;
+            }
+        }
+    }
+}
+
+// BEM for Assignment Attempt layout
+.attempt-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: $spacing-md;
+    gap: $spacing-md;
+
+    @include desktop {
+        flex-direction: row;
+    }
+
+    &__sidebar {
+        @include glass-panel;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: $spacing-md;
+        overflow-y: auto;
+
+        @include desktop {
+            max-width: 400px;
+        }
+    }
+
+    &__main {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+    }
+
+    &__editor-panel {
+        @include glass-panel;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: $spacing-md;
+    }
+
+    &__results-panel {
+        @include glass-panel;
+        flex: 1;
+        padding: $spacing-md;
+        overflow: auto;
+    }
+}
+
+// Common Buttons
+.btn {
+    padding: $spacing-sm $spacing-md;
+    border: none;
+    border-radius: $border-radius;
+    font-weight: 600;
+    color: $bg-dark;
+    background: $primary;
+
+    &:hover {
+        background: $primary-hover;
+    }
+
+    &--secondary {
+        background: transparent;
+        border: 1px solid $primary;
+        color: $primary;
+
+        &:hover {
+            background: rgba(0, 229, 255, 0.1);
+        }
+    }
+
+    &--outline {
+        background: transparent;
+        color: $text-light;
+        border: 1px solid $text-muted;
+
+        &:hover {
+            border-color: $text-light;
+        }
+    }
+
+    &--execute {
+        margin-top: $spacing-md;
+        width: 100%;
+        padding: $spacing-md;
+        font-size: 1.1rem;
+    }
+}
