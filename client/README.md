@@ -1,16 +1,83 @@
-# React + Vite
+# CipherSQLStudio - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for **CipherSQLStudio**, a browser-based SQL learning platform. It provides a highly interactive and responsive user interface for students to browse assignments, write SQL queries, and receive AI-powered hints.
 
-Currently, two official plugins are available:
+## Technology Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Routing**: [React Router DOM](https://reactrouter.com/)
+- **Code Editor**: [@monaco-editor/react](https://github.com/suren-atoyan/monaco-react) for a VS Code-like SQL editing experience in the browser.
+- **Styling**: Vanilla SCSS (Sass) utilizing a mobile-first approach and the BEM (Block Element Modifier) methodology.
+- **HTTP Client**: [Axios](https://axios-http.com/) for API communication with the backend.
 
-## React Compiler
+## Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Interactive SQL Workspace**: A split-panel view containing problem descriptions, an interactive database schema explorer, and the Monaco SQL editor.
+- **Real-time Feedback**: Displays query execution results, errors, and compares them against the expected output formatting.
+- **AI Tutor Integration**: Interface to request and display conceptual AI hints for the specific assignment and written query.
+- **Responsive Design**: Carefully crafted SCSS components ensure the application is functional across device sizes.
+- **Authentication**: User login and registration flows for tracking assignment progress and attempt history.
 
-## Expanding the ESLint configuration
+## Folder Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The application source code is located in the `src/` directory:
+
+```text
+src/
+├── components/       # Reusable UI components
+│   ├── assignment/   # Components specific to the SQL workspace (Editor, Sidebar, Results)
+│   └── Header.jsx    # Global navbar
+├── context/          # React Context providers (AuthContext for user state)
+├── hooks/            # Custom React hooks (useAssignmentManager for abstracting complex state)
+├── pages/            # Top-level route components (Login, Signup, AssignmentList, AssignmentAttempt)
+├── styles/           # Global SCSS files, variables, partials, and mixins
+├── App.jsx           # Main application component and routing configuration
+└── main.jsx          # Application root entry point
+```
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have [Node.js](https://nodejs.org/) (v18 or higher recommended) installed.
+The backend server must also be configured and running for full application functionality.
+
+### Installation
+
+1. Navigate to the `client` directory (if you aren't already there):
+   ```bash
+   cd client
+   ```
+2. Install the necessary dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development Server
+
+To start the Vite development server with Hot Module Replacement (HMR):
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`.
+
+### Building for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
+```
+
+This will generate a `dist/` directory containing the statically compiled assets ready for deployment.
+
+### Linting
+
+To run ESLint and check for codebase issues:
+
+```bash
+npm run lint
+```

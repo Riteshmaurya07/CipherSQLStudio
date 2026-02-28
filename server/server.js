@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' }); // Load from root
+require('dotenv').config({ path: '.env' }); // Load from root
 const express = require('express');
 const cors = require('cors');
 const { connectMongo, connectPG } = require('./config/db');

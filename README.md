@@ -30,7 +30,7 @@ A full-stack, browser-based SQL learning platform where users can attempt pre-co
 - Optional: API Key for LLM provider (set up in the `.env`)
 
 ### 2. Environment Configuration
-Copy the `.env.example` file in the root directory to `.env`:
+Create an `.env` file in the `server/` directory:
 ```
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/ciphersql
@@ -72,7 +72,6 @@ Query execution leverages `pg` driver using read-only database connections wrapp
 ## Folder Structure
 
 ```
-├── .env.example
 ├── README.md
 ├── client/
 │   ├── src/
@@ -82,6 +81,7 @@ Query execution leverages `pg` driver using read-only database connections wrapp
 │   │   └── main.jsx       # Entrypoint
 │   └── package.json
 └── server/
+    ├── .env               # Environment Config
     ├── config/            # DB Connectors
     ├── controllers/       # Route Logic
     ├── models/            # Mongoose Schemas

@@ -57,14 +57,13 @@ const AssignmentList = () => {
                             key={assignment._id}
                             className="assignment-list__card"
                             onClick={() => navigate(`/assignment/${assignment._id}`)}
-                            style={{ position: 'relative' }}
                         >
                             {isSolved && (
-                                <div style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '1.2rem' }} title="Solved">
+                                <div className="assignment-list__card-solved" title="Solved">
                                     ✅
                                 </div>
                             )}
-                            <h3 style={{ paddingRight: '24px' }}>{assignment.title}</h3>
+                            <h3>{assignment.title}</h3>
                             <p>{assignment.description}</p>
                             <span className={`difficulty difficulty--${assignment.difficulty.toLowerCase()}`}>
                                 {assignment.difficulty}
