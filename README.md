@@ -104,14 +104,30 @@ Query execution leverages `pg` driver using read-only database connections wrapp
 
 
 ##Mobile
-![Screenshot_20260228_170745_Chrome](https://github.com/user-attachments/assets/2c763943-6365-4d38-86c1-5331f11ea613)
-![Screenshot_20260228_170827_Chrome](https://github.com/user-attachments/assets/bc2d7f79-5445-4132-b0f5-c028d0b2aa65)
+## 📸 Application Screenshots
 
-![Screenshot_20260228_170838_Chrome](https://github.com/user-attachments/assets/3155056c-e1ff-4b44-9b0d-27add7403d7b)
-![Screenshot_20260228_170854_Chrome](https://github.com/user-attachments/assets/6ceef1af-29f6-4ce7-900d-7ce763f0012c)
-![Screenshot_20260228_171033_Chrome](https://github.com/user-attachments/assets/d8f4a1f3-3362-41e2-a80f-9892b68bd78e)
-![Screenshot_20260228_171100_Chrome](https://github.com/user-attachments/assets/f413ef2d-5520-48d8-ae77-45bc7ad77458)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2c763943-6365-4d38-86c1-5331f11ea613" width="600"/>
+</p>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bc2d7f79-5445-4132-b0f5-c028d0b2aa65" width="600"/>
+</p>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3155056c-e1ff-4b44-9b0d-27add7403d7b" width="600"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6ceef1af-29f6-4ce7-900d-7ce763f0012c" width="600"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d8f4a1f3-3362-41e2-a80f-9892b68bd78e" width="600"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f413ef2d-5520-48d8-ae77-45bc7ad77458" width="600"/>
+</p>
 ### Demo Video
 https://drive.google.com/file/d/1hXuFEyJLijSpgLIa7FIL9zC35PA-h9Af/view?usp=sharing
