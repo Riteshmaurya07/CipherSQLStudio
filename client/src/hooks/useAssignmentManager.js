@@ -13,17 +13,17 @@ export const useAssignmentManager = (id, user) => {
     const [loading, setLoading] = useState(false);
     const [history, setHistory] = useState([]);
     const [tableData, setTableData] = useState({});
-
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     useEffect(() => {
         const fetchAssignment = async () => {
             try {
-                const response = await axios.get(`/api/assignments/${id}`);
+                const response = await axios.get(`${backendUrl}/api/assignments/${id}`);
                 setAssignment(response.data);
 
                 if (response.data.sourceTables && response.data.sourceTables.length > 0) {
                     const dataPromises = response.data.sourceTables.map(async (table) => {
                         try {
-                            const tRes = await axios.get(`/api/tables/${table.name}`);
+                            const tRes = await axios.get(`${backendUrl}/api/tables/${table.name}`);
                             return { name: table.name, data: tRes.data };
                         } catch (e) {
                             return { name: table.name, data: null };
@@ -44,7 +44,7 @@ export const useAssignmentManager = (id, user) => {
         const fetchHistory = async () => {
             if (user) {
                 try {
-                    const response = await axios.get(`/api/attempts/${id}`);
+                    const response = await axios.get(`${backendUrl}/api/attempts/${id}`);
                     setHistory(response.data);
                 } catch (err) {
                     console.error("Error fetching history:", err);
@@ -63,19 +63,19 @@ export const useAssignmentManager = (id, user) => {
         setExpectedData(null);
         setIsCorrect(null);
         try {
-            const response = await axios.post('/api/query/execute', { query, assignmentId: id });
+            const response = await axios.post(`${backendUrl}/api/query/execute`, { query, assignmentId: id });
             setResults(response.data.data);
             setExpectedData(response.data.expectedData);
             setIsCorrect(response.data.isSuccessful);
 
             if (user) {
-                const histResponse = await axios.get(`/api/attempts/${id}`);
+                const histResponse = await axios.get(`${backendUrl}/api/attempts/${id}`);
                 setHistory(histResponse.data);
             }
         } catch (err) {
             setError(err.response?.data?.error || 'Execution failed');
             if (user) {
-                const histResponse = await axios.get(`/api/attempts/${id}`).catch(() => null);
+                const histResponse = await axios.get(`${backendUrl}/api/attempts/${id}`).catch(() => null);
                 if (histResponse) setHistory(histResponse.data);
             }
         } finally {
@@ -87,7 +87,7 @@ export const useAssignmentManager = (id, user) => {
         if (!assignment) return;
         setIsHintLoading(true);
         try {
-            const response = await axios.post('/api/hint', { question: assignment.description, query });
+            const response = await axios.post(`${backendUrl}/api/hint`, { question: assignment.description, query });
             setHint(response.data.hint);
         } catch (err) {
             console.error("Failed to get hint", err);

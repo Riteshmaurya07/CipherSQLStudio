@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import ProgressIndicator from '../components/ProgressIndicator';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const AssignmentList = () => {
     const [assignments, setAssignments] = useState([]);
@@ -14,7 +15,7 @@ const AssignmentList = () => {
     useEffect(() => {
         const fetchAssignments = async () => {
             try {
-                const response = await axios.get('/api/assignments');
+                const response = await axios.get(`${backendUrl}/api/assignments`);
                 setAssignments(response.data);
             } catch (error) {
                 console.error("Failed to fetch assignments", error);
@@ -24,7 +25,7 @@ const AssignmentList = () => {
         const fetchStats = async () => {
             if (user) {
                 try {
-                    const response = await axios.get('/api/attempts/stats');
+                    const response = await axios.get(`${backendUrl}/api/attempts/stats`);
                     setStats(response.data.stats);
                     setSolvedIds(response.data.solvedIds);
                 } catch (error) {

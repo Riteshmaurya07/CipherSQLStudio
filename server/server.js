@@ -7,9 +7,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+
+const frontendUri = process.env.FRONTEND_URI?.replace(/\/$/, "");
 app.use(cors({
   origin: [
-    process.env.FRONTEND_URI
+    "http://localhost:5173",
+    frontendUri
   ],
   credentials: true
 }));
@@ -20,12 +23,12 @@ app.use('/api', require('./routes/api'));
 
 // Initialize Server
 const startServer = async () => {
-    await connectMongo();
-    await connectPG();
+  await connectMongo();
+  await connectPG();
 
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 };
 
 startServer();

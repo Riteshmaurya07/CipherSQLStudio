@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Header from './components/Header';
 import { AuthProvider } from './context/AuthContext';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function App() {
   return (

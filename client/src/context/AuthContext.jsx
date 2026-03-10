@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const AuthContext = createContext();
 
@@ -23,14 +24,14 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const res = await axios.post('/api/auth/login', { email, password });
+        const res = await axios.post(`${backendUrl}/api/auth/login`, { email, password });
         localStorage.setItem('userInfo', JSON.stringify(res.data));
         setUser(res.data);
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
     };
 
     const register = async (name, email, password) => {
-        const res = await axios.post('/api/auth/register', { name, email, password });
+        const res = await axios.post(`${backendUrl}/api/auth/register`, { name, email, password });
         localStorage.setItem('userInfo', JSON.stringify(res.data));
         setUser(res.data);
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import '../styles/main.scss';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Header = () => {
     const { user, logout } = useContext(AuthContext);
