@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import ProgressIndicator from '../components/ProgressIndicator';
+import SkeletonAssignment from '../components/SkeletonAssignment';
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const AssignmentList = () => {
     const [assignments, setAssignments] = useState([]);
     const [stats, setStats] = useState(null);
     const [solvedIds, setSolvedIds] = useState([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 
@@ -37,8 +39,13 @@ const AssignmentList = () => {
             }
         };
 
-        fetchAssignments();
-        fetchStats();
+        const fetchData = async () => {
+            setLoading(true);
+            await Promise.all([fetchAssignments(), fetchStats()]);
+            setLoading(false);
+        };
+
+        fetchData();
     }, [user]);
 
     return (
@@ -51,27 +58,34 @@ const AssignmentList = () => {
             {user && <ProgressIndicator stats={stats} />}
 
             <div className="assignment-list__grid">
-                {assignments.length > 0 ? assignments.map(assignment => {
-                    const isSolved = solvedIds.includes(assignment._id);
-                    return (
-                        <div
-                            key={assignment._id}
-                            className="assignment-list__card"
-                            onClick={() => navigate(`/assignment/${assignment._id}`)}
-                        >
-                            {isSolved && (
-                                <div className="assignment-list__card-solved" title="Solved">
-                                    ✅
-                                </div>
-                            )}
-                            <h3>{assignment.title}</h3>
-                            <p>{assignment.description}</p>
-                            <span className={`difficulty difficulty--${assignment.difficulty.toLowerCase()}`}>
-                                {assignment.difficulty}
-                            </span>
-                        </div>
-                    );
-                }) : (
+                {loading ? (
+                    // Show 6 skeleton cards while loading
+                    [...Array(6)].map((_, index) => (
+                        <SkeletonAssignment key={index} />
+                    ))
+                ) : assignments.length > 0 ? (
+                    assignments.map(assignment => {
+                        const isSolved = solvedIds.includes(assignment._id);
+                        return (
+                            <div
+                                key={assignment._id}
+                                className="assignment-list__card"
+                                onClick={() => navigate(`/assignment/${assignment._id}`)}
+                            >
+                                {isSolved && (
+                                    <div className="assignment-list__card-solved" title="Solved">
+                                        ✅
+                                    </div>
+                                )}
+                                <h3>{assignment.title}</h3>
+                                <p>{assignment.description}</p>
+                                <span className={`difficulty difficulty--${assignment.difficulty.toLowerCase()}`}>
+                                    {assignment.difficulty}
+                                </span>
+                            </div>
+                        );
+                    })
+                ) : (
                     <p>No assignments available at the moment.</p>
                 )}
             </div>
